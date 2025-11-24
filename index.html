@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - 情報系学生</title>
+    <!-- Font Awesome CDN for icons (External resource allowed by requirement) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd8x89g0zRnsO+Xb0Xy5W6+2w3zJz1aN1v7t2t8Xm/j78w9a2F4w00M4hG5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles and Color Palette */
+        :root {
+            --color-primary: #1e40af; /* 濃い青 (Navy) */
+            --color-secondary: #3b82f6; /* 明るい青 (Royal Blue/Accent) */
+            --color-light: #ffffff; /* 白 */
+            --color-dark: #333333; /* 濃いグレー */
+            --color-text: #4a4a4a; /* 標準のテキスト色 */
+            --font-family: 'Noto Sans JP', 'Inter', sans-serif;
+        }
+
+        /* Reset and Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: #f8f8f8; /* ややオフホワイトの背景 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .section-padding {
+            padding: 40px 0;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+        
+        .header-title i {
+            margin-right: 10px;
+            color: var(--color-secondary);
+        }
+
+        /* Main Content */
+        main {
+            flex-grow: 1;
+        }
+
+        /* Section Base Styles */
+        .section {
+            background-color: var(--color-light);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--color-primary);
+        }
+
+        /* 1. Profile Section (自己紹介) */
+        #profile {
+            text-align: center;
+            padding-top: 50px; /* ヘッダー下の余白を広げる */
+        }
+        
+        .profile-card {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--color-light), #e9f0ff);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .profile-icon-box {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            border-radius: 50%;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
+
+        .profile-affiliation {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 20px;
+            padding: 4px 12px;
+            background-color: #f0f4ff;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* 2. Gakuchika Section (ガクチカ) */
+        #gakuchika .gakuchika-summary {
+            font-style: italic;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 5px solid var(--color-secondary);
+            background-color: #f0f4ff;
+        }
+
+        .gakuchika-details p {
+            margin-bottom: 18px;
+            line-height: 1.8;
+            text-align: justify;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .gakuchika-details p::before {
+            content: "\f0a9"; /* FontAwesome: angle-double-right */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--color-primary);
+            position: absolute;
+            left: 0;
+            font-size: 0.9rem;
+            top: 2px;
+        }
+
+        .gakuchika-result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9f0ff;
+            border-radius: 8px;
+            border: 1px solid var(--color-secondary);
+        }
+
+        .gakuchika-result h3 {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .gakuchika-result h3 i {
+            margin-right: 8px;
+        }
+
+        .acquired-skills {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .acquired-skills li {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* Footer Styling */
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            text-align: center;
+            padding: 1.2rem 0;
+            font-size: 0.85rem;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design (Media Queries) */
+        /* Tablet and Desktop Styles (Screen width >= 768px) */
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .section {
+                padding: 40px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .profile-name {
+                font-size: 2.5rem;
+            }
+
+            .gakuchika-details {
+                columns: 2; /* 広い画面では2段組にして読みやすく */
+                column-gap: 40px;
+            }
+            
+            .gakuchika-details p {
+                padding-left: 0; /* 2段組の場合はインデントをリセット */
+                text-align: left;
+                break-inside: avoid-column; /* 段落が途中で切れないように */
+            }
+
+            .gakuchika-details p::before {
+                content: none; /* 2段組の場合はアイコンを非表示 */
+            }
+        }
+
+        /* Large Desktop Styles (Screen width >= 1024px) */
+        @media (min-width: 1024px) {
+            .header-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ヘッダー -->
+    <header>
+        <div class="container">
+            <h1 class="header-title">
+                <i class="fas fa-terminal"></i> My Portfolio
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container section-padding">
+            
+            <!-- 2. 自己紹介セクション -->
+            <section id="profile" class="section">
+                <div class="profile-card">
+                    <div class="profile-icon-box">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    
+                    <h2 class="profile-name">
+                        <!-- 名前を「佐賀零一(Reiishi Saga)」に書き換えました -->
+                        Reiishi Saga (佐賀 零一)
+                    </h2>
+                    
+                    <p class="profile-affiliation">
+                        <!-- 所属を「日本大学理工学部」に書き換えました -->
+                        <i class="fas fa-university"></i> 日本大学理工学部
+                    </p>
+                    
+                    <p>
+                        データサイエンスとWeb開発に関心を持つ情報系学生です。<br class="mobile-only">
+                        大学で培った論理的思考力と、独学で身につけた技術力を活かし、社会に貢献できる人材を目指しています。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 3. 学生時代に力を入れたこと（ガクチカ）セクション -->
+            <section id="gakuchika" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i> 学生時代に力を入れたこと (GAKUCHIKA)
+                </h2>
+                
+                <p class="gakuchika-summary">
+                    **目標:** 活動の魅力を外部に発信し、部員を大幅に増やすこと。
+                </p>
+
+                <div class="gakuchika-details">
+                    <!-- 課題と目標設定 -->
+                    <p>
+                        私が学生時代に最も力を入れたのは、文芸部と演劇部を掛け持ちで改革し、組織を拡大した経験です。当初は文芸部3人、演劇部6人と少人数で活動が停滞していました。この状況を打開するため、「活動の魅力を外部に発信し、部員を増やす」ことを目標に掲げました。
+                    </p>
+
+                    <!-- 文芸部での施策 -->
+                    <p>
+                        **文芸部**では、ターゲットを明確化し、**中学生向けの部誌**を制作する企画を実行しました。従来の内部向けではなく、将来の入部希望者に魅力を伝える内容に一新。制作した部誌を、夏の学校説明会で直接中学生に頒布するブース企画を行い、認知度の向上を図りました。
+                    </p>
+
+                    <!-- 演劇部での施策 -->
+                    <p>
+                        **演劇部**では、部が**演劇賞を受賞**したという実績を最大限に活用することに注力しました。保護者や地域の中学生を招いた舞台公演を企画し、作品のクオリティを直接体験してもらう場を創出。外部からの評価を可視化することで、活動への注目度を高めました。
+                    </p>
+
+                    <!-- 結果と成果 -->
+                    <p>
+                        これらの地道な活動の結果、部員数は**文芸部が30人以上**、**演劇部が15人以上**へと大幅に増加しました。これは、当初の部員数の数倍にあたります。
+                    </p>
+                </div>
+
+                <div class="gakuchika-result">
+                    <h3><i class="fas fa-trophy"></i> この経験から培った力</h3>
+                    <p>この経験から、目標達成に向けた課題解決のための**企画力**と、周囲を巻き込みながら粘り強く実行する**推進力**を培うことができました。</p>
+                    <ul class="acquired-skills">
+                        <li>企画力（課題特定と解決策立案）</li>
+                        <li>推進力（粘り強い実行と巻き込み）</li>
+                        <li>組織運営力</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 4. フッター -->
+    <footer>
+        <!-- Copyright表記も名前に合わせて更新しました -->
+        <p>&copy; 2025 Reiishi Saga Portfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
