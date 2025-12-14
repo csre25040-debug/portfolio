@@ -121,16 +121,27 @@
         }
 
         .profile-icon-box {
+            /* アイコンから画像に変わるため、display: block/inline-block のみで、line-heightは削除 */
             display: inline-block;
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            background-color: var(--color-secondary);
-            color: var(--color-light);
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            font-size: 3rem;
             margin-bottom: 15px;
+            /* 背景と影を維持 */
+            background-color: var(--color-secondary); 
             box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.5);
+            /* 画像がはみ出さないように */
+            overflow: hidden; 
+        }
+
+        /* 顔写真のスタイル */
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 縦横比を維持してボックスを埋める */
+            border-radius: 50%; /* 親要素と合わせて円形にする */
+            display: block;
+            border: 3px solid var(--color-light); /* 白い枠線を追加して写真感を強調 */
         }
 
         .profile-name {
@@ -311,8 +322,17 @@
             <!-- 2. 自己紹介セクション -->
             <section id="profile" class="section">
                 <div class="profile-card">
+                    <!-- プロフィール画像エリア -->
                     <div class="profile-icon-box">
-                        <i class="fas fa-user-circle"></i>
+                        <!-- 
+                            【重要】ここに実際の顔写真のURLを設定してください。
+                            現在の画像は単なる青色のプレースホルダーです。
+                        -->
+                        <img 
+                            src="https://placehold.co/100x100/3b82f6/ffffff" 
+                            alt="佐賀 零一の顔写真" 
+                            class="profile-photo"
+                        />
                     </div>
                     
                     <h2 class="profile-name">
